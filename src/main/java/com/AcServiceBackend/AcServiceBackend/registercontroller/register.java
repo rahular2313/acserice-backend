@@ -30,7 +30,7 @@ public class register {
     return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
   }
 
-  @GetMapping("/{email}/{password}")
+  @GetMapping("{email}/{password}")
   public int registerService(@PathVariable("email") String username1, @PathVariable("password") String password1) {
     return registerService.loginValidation(username1, password1);
   }
