@@ -14,12 +14,20 @@ public class RegisterService {
     private registerrepo registerRepository;
 
     public registermodel addregister(registermodel register) {
-        return registerRepository.save(register);
+        String email = register.getEmail();
+        registermodel existingUser=registerRepository.findByEmail(email);
+        if(existingUser==null)
+        {
+            return registerRepository.save(register);
+        }
+        else{
+            return null;
+        }
     }
 
     public int loginValidation(String email, String password) {
         registermodel existingUser = registerRepository.findByEmail(email);
-        if (existingUser != null && password == existingUser.getPassword()) {
+        if (existingUser != null && password.equals(existingUser.getPassword())) {
             return 1;
         } else {
             return 0;
