@@ -15,12 +15,10 @@ public class RegisterService {
 
     public registermodel addregister(registermodel register) {
         String email = register.getEmail();
-        registermodel existingUser=registerRepository.findByEmail(email);
-        if(existingUser==null)
-        {
+        registermodel existingUser = registerRepository.findByEmail(email);
+        if (existingUser == null) {
             return registerRepository.save(register);
-        }
-        else{
+        } else {
             return null;
         }
     }
