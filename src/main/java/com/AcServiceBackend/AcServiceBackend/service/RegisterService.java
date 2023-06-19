@@ -22,12 +22,13 @@ public class RegisterService {
             return null;
         }
     }
-
     public int loginValidation(String email, String password) {
         registermodel existingUser = registerRepository.findByEmail(email);
-        if (existingUser != null && password.equals(existingUser.getPassword())) {
+        if (existingUser != null && password.equals(existingUser.getPassword())) 
+        {
             return 1;
-        } else {
+        } else 
+        {
             return 0;
         }
     }
