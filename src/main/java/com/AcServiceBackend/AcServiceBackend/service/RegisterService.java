@@ -32,4 +32,15 @@ public class RegisterService {
             return 0;
         }
     }
+
+    public String resetPassword(String email, String newPassword) {
+        registermodel existingUser = registerRepository.findByEmail(email);
+        if (existingUser != null) {
+            existingUser.setPassword(newPassword);
+            registerRepository.save(existingUser);
+            return "Password reset successful. New password: " ;
+        } else {
+            return "Email not found. Password reset failed.";
+        }
+    }
 }

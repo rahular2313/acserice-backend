@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.AcServiceBackend.AcServiceBackend.model.registermodel;
 import com.AcServiceBackend.AcServiceBackend.service.RegisterService;
 
@@ -33,5 +33,9 @@ public class register {
   @GetMapping("/{email}/{password}")
   public int registerService(@PathVariable("email") String username1, @PathVariable("password") String password1) {
     return registerService.loginValidation(username1, password1);
+  }
+  @PostMapping("/forgetpassword")
+  public String forgetPassword(@RequestParam("email") String email, @RequestParam("newPassword") String newPassword) {
+    return registerService.resetPassword(email, newPassword);
   }
 }
