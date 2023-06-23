@@ -29,12 +29,20 @@ public class register {
 
     return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
   }
+
   @GetMapping("/{email}/{password}")
   public int registerService(@PathVariable("email") String username1, @PathVariable("password") String password1) {
     return registerService.loginValidation(username1, password1);
   }
+
   @PostMapping("/forgetpassword")
-  public String forgetPassword(@RequestParam("email") String email, @RequestParam("newPassword") String newPassword) {
-    return registerService.resetPassword(email, newPassword);
+  public ResponseEntity<String> forgetPassword(@RequestParam("email") String email,
+      @RequestParam("newPassword") String newPassword) {
+    try {
+      String result = registerService.resetPassword(email, newPassword);
+      return ResponseEntity.ok(result);
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred.");
+    }
   }
 }
