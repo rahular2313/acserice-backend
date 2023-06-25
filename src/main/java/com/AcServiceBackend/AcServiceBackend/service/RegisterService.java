@@ -9,10 +9,8 @@ import com.AcServiceBackend.AcServiceBackend.repo.registerrepo;
 @Service
 @Configuration
 public class RegisterService {
-
     @Autowired
     private registerrepo registerRepository;
-
     public registermodel addregister(registermodel register) {
         String email = register.getEmail();
         registermodel existingUser = registerRepository.findByEmail(email);
@@ -22,7 +20,6 @@ public class RegisterService {
             return null;
         }
     }
-
     public int loginValidation(String email, String password) {
         registermodel existingUser = registerRepository.findByEmail(email);
         if (existingUser != null && password.equals(existingUser.getPassword())) {
